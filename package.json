@@ -1,7 +1,6 @@
 {
   "name": "nuxt-app",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -9,8 +8,18 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "type": "module",
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.7.3"
+    "@nuxt/test-utils": "^3.7.3",
+    "autoprefixer": "^10.4.15",
+    "nuxt": "^3.7.3",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3",
+    "vitest": "^0.34.4"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "daisyui": "latest"
   }
 }
