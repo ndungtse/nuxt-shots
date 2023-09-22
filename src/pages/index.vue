@@ -56,9 +56,8 @@ watch(photosData, (newVal) => {
 
 <template>
     <div>
-        <NavBar />
         <!-- map photos -->
-        <div class="flex lg:max-w-[1100px] mx-auto py-11 w-full gap-x-5">
+        <div class="flex lg:max-w-[1300px] mx-auto py-11 w-full gap-x-5">
             <div v-for="colPhotos in photos" class="flex flex-col w-full gap-y-5">
                 <div v-for="photo in colPhotos" class="flex cursor-pointer flex-col w-full">
                     <img :src="photo.src.medium" loading="lazy" :alt="photo.photographer" />

@@ -1,5 +1,4 @@
 <script setup>
-
 useSeoMeta({
   title: "Nuxt Gallery",
   description: "A simple Nuxt Photo & Video Gallery",
@@ -9,6 +8,7 @@ useSeoMeta({
 
 <template>
   <div class="flex flex-col w-full min-h-screen">
+    <NavBar />
     <NuxtPage />
     <Footer />
   </div>
