@@ -18,6 +18,13 @@ const navs = ref<{ name: string, path: string }[]>([{ name: "home", path: '/' },
         </RouterLink>
       </li>
     </ul>
-    <div class=""></div>
+    <div class="flex gap-x2 items-center">
+      <button class="flex p-2 rounded-md">
+        <Icon name="mdi:bookmark" class="w-5 h-5" />
+      </button>
+      <button class="flex p-2 rounded-md">
+        <Icon name="mdi:heart" class="w-5 h-5" />
+      </button>
+    </div>
   </nav>
 </template>

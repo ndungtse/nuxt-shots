@@ -6,7 +6,7 @@ import { useWindowSize } from '@vueuse/core'
 const { width, height } = useWindowSize()
 
 useSeoMeta({
-    title: "Nuxt Gallery - Videos",
+    title: "Nuxt Gallery - videos",
 })
 
 // props
