@@ -4,10 +4,18 @@ useSeoMeta({
   description: "A simple Nuxt Photo & Video Gallery",
   ogImage: "/logo.jpeg",
 })
+
+onMounted(() => {
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+})
 </script>
 
 <template>
-  <div class="flex flex-col w-full min-h-screen">
+  <div class="flex bg-white dark:bg-slate-900 flex-col w-full min-h-screen">
     <NavBar />
     <NuxtPage />
     <Footer />
