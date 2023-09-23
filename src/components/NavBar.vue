@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const navs = ref<string[]>(["home", "videos", "about", "favorites"]);
+const navs = ref<{ name: string, path: string }[]>([{ name: "home", path: '/' }, { name: "videos", path: '/videos' }, { name: "about", path: '/about' }, { name: "favorites", path: '/favorites' }]);
 </script>
 
 <template>
@@ -10,11 +10,11 @@ const navs = ref<string[]>(["home", "videos", "about", "favorites"]);
 
     <ul
       class="flex items-center border px-4 rounded-full shadow-sm h-full gap-8 dark:border-gray-700 dark:bg-grey-900 dark:bg-opacity-40">
-      <li v-for="e in navs" :key="e" class="h-full flex items-center">
+      <li v-for="e in navs" :key="e.name" class="h-full flex items-center">
         <RouterLink
           class="hover:text-blue-700 hover:dark:text-blue-500 transition-colors capitalize text-sm cursor-pointer"
-          :to="`/${e}`">
-          {{ e }}
+          :to="e.path">
+          {{ e.name }}
         </RouterLink>
       </li>
     </ul>

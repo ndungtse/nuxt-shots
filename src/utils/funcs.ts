@@ -1,22 +1,18 @@
-
 /**
- * @param data 
- * @param cols 
- * @returns 
+ * @param data
+ * @param cols
+ * @returns
  * @description Make a 2D array with the given data and number of columns and equal rows in columns
  */
 export const putDataInCols = (data: any[], cols: number) => {
-  const newData = /* mixArray(data); */ data
-  const rows = Math.ceil(newData.length / cols);
+  const rows = Math.ceil(data.length / cols);
   const result: any[][] = [];
-  let lastCol= 0;
-  console.log('rows', rows);
-  
-  for (let i = 0; i < data.length; i += rows) {
-    result.push(newData.slice(i, i + rows));
+  for (let i = 0; i < rows; i++) {
+    result.push(data.slice(i * cols, i * cols + cols));
   }
-  console.log("result", result);
-  return result;
+  const final = reverse2DArray(result);
+  console.log("final", final);
+  return final;
 };
 
 const mixArray = (arr: any[]) => {
@@ -27,8 +23,31 @@ const mixArray = (arr: any[]) => {
     arr.splice(randomIndex, 1);
   }
   console.log("result", result);
-  
+
   return result;
+};
+
+export function reverse2DArray(array: any[][]) {
+  const numRows = array.length;
+  const numCols = array[0].length;
+
+  // Create a new array with reversed dimensions
+  const reversedArray = new Array(numCols);
+  for (let i = 0; i < numCols; i++) {
+    reversedArray[i] = new Array(numRows);
+  }
+
+  // Copy values from the original array to the reversed array
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      // if (!array[i][j]) {
+      //   continue;
+      // }
+      reversedArray[j][i] = array[i][j];
+    }
+  }
+
+  return reversedArray;
 }
 
 export function transformTo2DArrayWithEqualRows(arr: any[], numCols: number) {
