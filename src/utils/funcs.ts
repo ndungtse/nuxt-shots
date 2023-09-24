@@ -4,13 +4,13 @@
  * @returns
  * @description Make a 2D array with the given data and number of columns and equal rows in columns
  */
-export const putDataInCols = (data: any[], cols: number) => {
+export const putDataInCols = <T = any>(data: T[], cols: number): T[][] => {
   const rows = Math.ceil(data.length / cols);
-  const result: any[][] = [];
+  const result: T[][] = [];
   for (let i = 0; i < rows; i++) {
     result.push(data.slice(i * cols, i * cols + cols));
   }
-  const final = reverse2DArray(result);
+  const final: T [][] = reverse2DArray(result);
   console.log("final", final);
   return final;
 };
@@ -27,7 +27,7 @@ const mixArray = (arr: any[]) => {
   return result;
 };
 
-export function reverse2DArray(array: any[][]) {
+export function reverse2DArray<T = any>(array: T[][]) {
   const numRows = array.length;
   const numCols = array[0].length;
 

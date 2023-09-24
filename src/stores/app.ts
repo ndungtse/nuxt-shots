@@ -37,6 +37,20 @@ export const useAppStore = defineStore('app', {
             this.favorites.videos.push(video);
             localStorage.setItem('favorites', JSON.stringify(this.favorites));
         },
+        toggleFavoritePhoto(photo: Photo) {
+            const index = this.favorites.photos.findIndex((item) => item.id === photo.id);
+            if (index === -1)
+                this.addFavoritePhoto(photo);
+            else
+                this.removeFavoritePhoto(photo);
+        },
+        toggleFavoriteVideo(video: Video) {
+            const index = this.favorites.videos.findIndex((item) => item.id === video.id);
+            if (index === -1)
+                this.addFavoriteVideo(video);
+            else
+                this.removeFavoriteVideo(video);
+        },
         addBookmarkPhoto(photo: Photo) {
             this.bookmarks.photos.push(photo);
             localStorage.setItem('bookmarks', JSON.stringify(this.bookmarks));
@@ -44,6 +58,20 @@ export const useAppStore = defineStore('app', {
         addBookmarkVideo(video: Video) {
             this.bookmarks.videos.push(video);
             localStorage.setItem('bookmarks', JSON.stringify(this.bookmarks));
+        },
+        toggleBookmarkPhoto(photo: Photo) {
+            const index = this.bookmarks.photos.findIndex((item) => item.id === photo.id);
+            if (index === -1)
+                this.addBookmarkPhoto(photo);
+            else
+                this.removeBookmarkPhoto(photo);
+        },
+        toggleBookmarkVideo(video: Video) {
+            const index = this.bookmarks.videos.findIndex((item) => item.id === video.id);
+            if (index === -1)
+                this.addBookmarkVideo(video);
+            else
+                this.removeBookmarkVideo(video);
         },
         removeFavoritePhoto(photo: Photo) {
             this.favorites.photos = this.favorites.photos.filter((item) => item.id !== photo.id);

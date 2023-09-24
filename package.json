@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nuxt/image": "rc",
+    "@pinia/nuxt": "^0.4.11",
     "@vueuse/core": "^10.4.1",
     "axios": "^1.5.0",
     "daisyui": "latest",

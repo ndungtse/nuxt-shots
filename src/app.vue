@@ -1,4 +1,7 @@
-<script setup>
+<script setup lang="ts">
+import { useAppStore } from './stores/app';
+
+const appStore = useAppStore()
 useSeoMeta({
   title: "Nuxt Gallery",
   description: "A simple Nuxt Photo & Video Gallery",
@@ -11,6 +14,8 @@ onMounted(() => {
   } else {
     document.documentElement.classList.remove('dark')
   }
+  appStore.loadBookmarks()
+  appStore.loadFavorites()
 })
 </script>
 

@@ -1,7 +1,14 @@
 <script lang="ts" setup>
+import { useAppStore } from '~/stores/app';
 import { Photo } from '~/types';
-
+const appStore = useAppStore();
 const isFullScreen = ref(false);
+const isOnFavorites = computed(() => {
+    return appStore.favorites.photos.some((photo) => photo.id === props.photo.id);
+});
+const isBookmarked = computed(() => {
+    return appStore.bookmarks.photos.some((photo) => photo.id === props.photo.id);
+});
 
 const props = defineProps({
     photo: {
@@ -10,6 +17,26 @@ const props = defineProps({
     }
 })
 const photo = ref<Photo>(props.photo)
+
+const downloadImage = async (imgUrl: string) => {
+    try {
+        const response = await fetch(imgUrl);
+        if (response.ok) {
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            document.body.appendChild(link);
+            link.href = url;
+            link.download = `${photo.value.photographer}`;
+            link.click();
+        } else {
+            console.error('Failed to download image.');
+        }
+    } catch (error) {
+        console.error('Error downloading image:', error);
+    }
+}
+
 </script>
 
 <template>
@@ -22,19 +49,26 @@ const photo = ref<Photo>(props.photo)
             <!-- clickable div -->
             <div class=" absolute top-0 left-0 bottom-0 right-0" @click="isFullScreen = true"></div>
             <div class="flex items-center gap-x-2 justify-end">
-                <button @click="console.log('buton')"
+                <button @click="appStore.toggleBookmarkPhoto(photo)"
                     class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
-                    <Icon name="mdi:bookmark" class="w-5 h-5" />
+                    <Icon v-if="isBookmarked" name="mdi:bookmark" class="w-5 h-5" />
+                    <Icon v-else name="mdi:bookmark-outline" class="w-5 h-5" />
                 </button>
-                <button class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
-                    <Icon name="mdi:heart" class="w-5 h-5" />
+                <button class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md"
+                    @click="appStore.toggleFavoritePhoto(photo)">
+                    <Icon v-if="isOnFavorites" name="mdi:heart" class="w-5 h-5"
+                        :class="{ 'text-red-600': isOnFavorites }" />
+                    <Icon v-else name="mdi:heart-outline" class="w-5 h-5" />
                 </button>
             </div>
             <div class="flex items-center gap-x-2 justify-end">
-                <button class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
+                <button @click="appStore.toggleFavoritePhoto(photo)"
+                    class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
                     <Icon name="mdi:fullscreen" class="w-5 h-5" />
                 </button>
-                <button class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
+                <!-- download -->
+                <button class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md"
+                    @click="downloadImage(photo.src.original)">
                     <Icon name="mdi:download" class="w-5 h-5" />
                 </button>
             </div>
