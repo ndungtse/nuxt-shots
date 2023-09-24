@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useSeoMeta({
-    title: "Nuxt Gallery - Favorites",
+    title: "Nuxt Gallery - Bookmarks",
 })
 </script>
 

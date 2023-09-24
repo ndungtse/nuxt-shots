@@ -20,8 +20,10 @@
     "vitest": "^0.34.4"
   },
   "dependencies": {
+    "@nuxt/image": "rc",
     "@vueuse/core": "^10.4.1",
     "axios": "^1.5.0",
-    "daisyui": "latest"
+    "daisyui": "latest",
+    "pinia": "^2.1.6"
   }
 }

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { VideoResponse } from '~/types';
-// import { VideoResponse } from '@/types/';
+import { PhotosResponse, VideoResponse } from '~/types';
+import { searchPhotos } from '~/utils/api';
 import { putDataInCols } from '~/utils/funcs';
 import { useWindowSize } from '@vueuse/core'
-import Videos from '~/components/videos/Videos.vue';
 const { width, height } = useWindowSize()
 
 useSeoMeta({
-    title: "Nuxt Gallery - Videos",
+    title: "Nuxt Shots - Photos",
 })
 
 // props
@@ -18,22 +17,23 @@ const props = defineProps({
 })
 
 // state
-const videosData = ref<VideoResponse | null>(null)
-const videos = ref<Set<VideoResponse['videos']>>(new Set())
+const photosData = ref<PhotosResponse | null>(null)
+const videosData = ref<VideoResponse[] | null>(null)
+const photos = ref<Set<PhotosResponse['photos']>>(new Set())
 const page = ref(1);
 const cols = ref(3);
 
 const runtimeConfig = useRuntimeConfig()
 
-const getVideos = async () => {
-    const videos = await getCuratedVideos({ per_page: 20, page: page.value });
-    console.log(videos)
-    videosData.value = { ...videos, videos: [...videosData.value?.videos ?? [], ...videos.videos] };
+const getPhotos = async () => {
+    const photos = await searchPhotos(props.category ?? "popular", { per_page: 20, page: page.value });
+    console.log(photos)
+    photosData.value = { ...photos, photos: [...photosData.value?.photos ?? [], ...photos.photos] };
 }
 
 onMounted(() => {
     console.log("Home Page Mounted", runtimeConfig.public.API_KEY)
-    getVideos();
+    getPhotos();
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -50,24 +50,24 @@ async function handleScroll() {
     if (scrollY + windowHeight >= documentHeight) {
         console.log("bottom", page.value);
         // if (page.value ÷÷)
-        await getVideos();
-        console.log(videos)
+        await getPhotos();
+        console.log(photos)
         page.value++;
     }
 }
 
-watch([videosData, cols], (newVal) => {
+watch([photosData, cols], (newVal) => {
     if (newVal) {
-        console.log("videosData changed", newVal);
-        if (!newVal[0]?.videos) return;
-        videos.value = new Set(putDataInCols(newVal[0]?.videos, cols.value));
+        console.log("photosData changed", newVal);
+        if (!newVal[0]?.photos) return;
+        photos.value = new Set(putDataInCols(newVal[0]?.photos, cols.value));
 
     }
 })
 
 // change cols if screen size changes
 watch(width, (newVal) => {
-    if (newVal < 300) {
+    if (newVal < 350) {
         cols.value = 1;
     } else if (newVal < 768) {
         cols.value = 2;
@@ -79,9 +79,5 @@ watch(width, (newVal) => {
 })
 </script>
 <template>
-    <div>
-       <div class="flex lg:max-w-[1300px] mx-auto py-11 w-full gap-x-5">
-           <Videos :videos="videos" />
-       </div>
-   </div>
+    <Photos :photos="photos" />
 </template>
