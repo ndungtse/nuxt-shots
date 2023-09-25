@@ -1,4 +1,4 @@
-<!-- <script lang="ts" setup>
+<script lang="ts" setup>
 import { useWindowSize } from '@vueuse/core';
 import { useAppStore } from '~/stores/app';
 import { Photo } from '~/types';
@@ -63,11 +63,11 @@ watch([favorites, cols], (newVal) => {
 
     }
 })
-</script> -->
+</script>
 
 <template>
     <div class="flex w-full flex-col">
-        <!-- <div class="flex flex-col lg:max-w-[1300px] mx-auto py-11 w-full gap-y-5">
+        <div class="flex flex-col lg:max-w-[1300px] mx-auto py-11 w-full gap-y-5">
             <div class="flex flex-row max--[500px] mx-auto">
                 <RouterLink :to="{ query: { tab: 'photos' } }" class="flex-1">
                     <div class="flex flex-row items-center justify-center py-2 px-4 rounded-md cursor-pointer"
@@ -91,6 +91,6 @@ watch([favorites, cols], (newVal) => {
                 </div>
             </div>
 
-        </div> -->
+        </div>
     </div>
 </template>
