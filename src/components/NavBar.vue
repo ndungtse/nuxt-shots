@@ -38,7 +38,7 @@ watch(width, (newVal) => {
 
 <template>
   <nav
-    class="lg:w-11/12 text-gray-500 z-20 sticky top-0 bg-slate-900 2xl:w-4/5 w-full md:px-6 2xl:px-0 py-2 mx-auto h-16 flex px-2 items-center justify-between"
+    class="lg:w-11/12 text-gray-500 z-20 sticky top-0 bg-white dark:bg-slate-900 2xl:w-4/5 w-full md:px-6 2xl:px-0 py-2 mx-auto h-16 flex px-2 items-center justify-between"
     
     >
     <RouterLink to="/" class="2xl:ml-6 hover:text-black hover:dark:text-white transition-colors duration-300">

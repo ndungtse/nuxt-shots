@@ -1,11 +1,24 @@
 <script setup lang="ts">
 import { useAppStore } from './stores/app';
+import NProgress from 'nprogress'
 
 const appStore = useAppStore()
 useSeoMeta({
   title: "Nuxt Gallery",
   description: "A simple Nuxt Photo & Video Gallery",
   ogImage: "/logo.jpeg",
+})
+const router = useRouter();
+
+router.beforeResolve((to,from, next) => {
+  if(to.name && (to.name  !== from.name)) {
+    NProgress.start();
+  }
+  next();
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 onMounted(() => {

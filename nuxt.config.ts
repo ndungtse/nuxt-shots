@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['nuxt-icon', '@pinia/nuxt'],
-  css: ['@/assets/css/main.css'],
+  css: ['@/assets/css/main.css','nprogress/nprogress.css'],
   srcDir: 'src/',
   devServer: {
     port: 5252,
