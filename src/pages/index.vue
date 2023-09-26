@@ -1,4 +1,10 @@
 <script setup lang="ts">
+definePageMeta({
+    pageTransition: {
+        name: 'page',
+        mode: 'out-in',
+    },
+})
 import { PhotosResponse, VideoResponse } from '~/types';
 import { searchPhotos } from '~/utils/api';
 import { putDataInCols } from '~/utils/funcs';
@@ -82,3 +88,19 @@ watch(width, (newVal) => {
 <template>
     <Photos :photos="photos" />
 </template>
+
+<style scoped>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+/* slide transition */
+/* .page-enter-from {
+  opacity: 0;
+  transform: translateX(50%);
+} */
+/* .slide-leave-to {
+  opacity: 1;
+  transform: translateX(-100%);
+} */
+</style>

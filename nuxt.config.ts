@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['nuxt-icon', '@pinia/nuxt'],
+  modules: ['nuxt-icon', '@pinia/nuxt',],
   css: ['@/assets/css/main.css','nprogress/nprogress.css'],
   srcDir: 'src/',
   devServer: {
@@ -21,4 +21,5 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'slide', mode: 'out-in', duration: 500 },
   },
+  // buildModules: ['@nuxtjs/pwa',]
 })

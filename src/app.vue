@@ -7,6 +7,11 @@ useSeoMeta({
   title: "Nuxt Gallery",
   description: "A simple Nuxt Photo & Video Gallery",
   ogImage: "/logo.jpeg",
+  ogUrl: "https://nuxt-shots.vercel.app/",
+  ogType: "website",
+  ogSiteName: "Nuxt Gallery",
+  ogTitle: "Nuxt Gallery",
+  ogDescription: "A simple Nuxt Photo & Video Gallery",
 })
 const router = useRouter();
 

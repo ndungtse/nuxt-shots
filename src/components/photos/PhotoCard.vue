@@ -47,7 +47,7 @@ const downloadImage = async (imgUrl: string) => {
         <div
             class=" absolute text-black top-0 opacity-0 flex flex-col justify-between sm:p-4 p-2 bottom-0 right-0 left-0 duration-300 hover:opacity-100 bg-gradient-to-b from-black/30 via-black/0 to-black/30">
             <!-- clickable div -->
-            <div class=" absolute top-0 left-0 bottom-0 right-0" @click="isFullScreen = true"></div>
+            <RouterLink :to="`/photo/${photo?.id}`" class=" absolute top-0 left-0 bottom-0 right-0" ></RouterLink>
             <div class="flex items-center gap-x-2 justify-end">
                 <button @click="appStore.toggleBookmarkPhoto(photo)"
                     class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
@@ -62,7 +62,7 @@ const downloadImage = async (imgUrl: string) => {
                 </button>
             </div>
             <div class="flex items-center gap-x-2 justify-end">
-                <button @click="appStore.toggleFavoritePhoto(photo)"
+                <button @click="isFullScreen = true"
                     class="flex sm:p-2 z-10 p-1 bg-white hover:bg-stone-300 duration-300 rounded-md">
                     <Icon name="mdi:fullscreen" class="w-5 h-5" />
                 </button>
