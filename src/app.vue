@@ -39,3 +39,19 @@ onMounted(() => {
     <Footer />
   </div>
 </template>
+
+<style>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.4s;
+}
+/* slide transition */
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(50%);
+}
+.slide-leave-to {
+  opacity: 1;
+  transform: translateX(-100%);
+}
+</style>

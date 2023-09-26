@@ -18,4 +18,7 @@ export default defineNuxtConfig({
       API_KEY: process.env.NUXT_PUBLIC_API_KEY,
     },
   },
+  app: {
+    pageTransition: { name: 'slide', mode: 'out-in', duration: 500 },
+  },
 })
