@@ -3,6 +3,7 @@ import { useAppStore } from '~/stores/app';
 import { Video } from '~/types/videos';
 const appStore = useAppStore();
 const isFullScreen = ref(false);
+const router = useRouter();
 const isOnFavorites = computed(() => {
     return appStore.favorites.videos.some((video) => video?.id === props.video?.id);
 });
@@ -18,6 +19,10 @@ const props = defineProps({
 })
 
 const video = ref<Video>(props.video)
+// const toggleBookmarkPhoto = () => {
+//     appStore.toggleBookmarkVideo(video.value);
+    
+// }
 </script>
 
 <template>

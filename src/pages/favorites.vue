@@ -60,12 +60,12 @@ watch(width, (newVal) => {
 
 
 // change photos if favData changes
-watch([favorites, cols], (newVal) => {
+watch([appStore, cols], (newVal) => {
     console.log("photo or video set changed", newVal);
     if (newVal) {
         if (!newVal[0]) return;
-        const favPhotos = newVal[0].photos;
-        const favVideos = newVal[0].videos;
+        const favPhotos = newVal[0].favorites.photos;
+        const favVideos = newVal[0].favorites.videos;
         const newFavs = {
             photos: favPhotos.length > 0? new Set(putDataInCols(favPhotos, cols.value)) : new Set([]),
             videos: favVideos.length > 0? new Set(putDataInCols(favVideos, cols.value)) : new Set([])
