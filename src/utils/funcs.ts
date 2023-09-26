@@ -5,6 +5,7 @@
  * @description Make a 2D array with the given data and number of columns and equal rows in columns
  */
 export const putDataInCols = <T = any>(data: T[], cols: number): T[][] => {
+  console.log("put in cols data", data);
   const rows = Math.ceil(data.length / cols);
   const result: T[][] = [];
   for (let i = 0; i < rows; i++) {

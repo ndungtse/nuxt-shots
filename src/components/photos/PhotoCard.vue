@@ -4,10 +4,10 @@ import { Photo } from '~/types';
 const appStore = useAppStore();
 const isFullScreen = ref(false);
 const isOnFavorites = computed(() => {
-    return appStore.favorites.photos.some((photo) => photo.id === props.photo.id);
+    return appStore.favorites.photos.some((photo) => photo?.id === props.photo?.id);
 });
 const isBookmarked = computed(() => {
-    return appStore.bookmarks.photos.some((photo) => photo.id === props.photo.id);
+    return appStore.bookmarks.photos.some((photo) => photo?.id === props.photo?.id);
 });
 
 const props = defineProps({

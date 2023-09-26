@@ -11,7 +11,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <div v-for="colVideos in videos" class="flex flex-col w-full gap-y-5">
-        <Video v-for="video in colVideos" :key="video?.id" :video="video" />
+    <div v-for="colVideos in videos" :key="Math.random()" class="flex flex-col w-full gap-y-5 max-w-[500px]">
+        <Video v-for="video in colVideos" :key="video?.id ?? Math.random()" :video="video" />
     </div>
 </template>
